@@ -1,0 +1,48 @@
+<manifest xmlns="http://mcsman.mc.handtruth.com/manifest"
+          group="com.handtruth.mc.mcsman"
+          artifact="mcsman-core"
+          version="easter egg">
+
+    <service class="com.handtruth.mc.mcsman.server.service.DockerService$Global"/>
+    <service class="com.handtruth.mc.mcsman.server.service.DockerService$Companion"/>
+
+    <module class="com.handtruth.mc.mcsman.server.module.MCSMan"/>
+
+    <event class="com.handtruth.mc.mcsman.event.ActorEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.UserEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.GroupEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.PermissionSubjectEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.VolumeEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.DurationEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServerEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServiceEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ModuleEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.SessionEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.GroupMemberEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServerCreationEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ChangeServerDescription"/>
+    <event class="com.handtruth.mc.mcsman.event.VolumeAccessEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.SessionLifeEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ManageServerEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServerLifeEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.SendCommand2ServerEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ChangeVersionServerEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.VolumeCreationEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServerPermissionEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.GlobalPermissionEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.UserCreationEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.BlockUserEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ChangeUserEMailEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ChangeUserRealNameEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.GroupCreationEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ChangeOwnerOfGroupEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ChangeGroupRealNameEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ManageServiceEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServiceLifeEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ServiceCreationEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.SendCommand2ServiceEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.ImageWildcardEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.MCSManLifeEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.LoginMethodEvent"/>
+    <event class="com.handtruth.mc.mcsman.event.BlockLoginMethodEvent"/>
+</manifest>

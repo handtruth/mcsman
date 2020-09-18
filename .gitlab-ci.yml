@@ -4,6 +4,8 @@ stages:
   - build
   - test
   - analysis
+  - package
+  - image
 
 cache:
   paths:
@@ -13,31 +15,57 @@ cache:
 variables:
   GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
   GIT_SUBMODULE_STRATEGY: normal
+  GRADLE: ./gradlew -Pci --console=plain --no-daemon --max-workers=1 --stacktrace
 
 Build:
   stage: build
   script:
-    - ./gradlew --no-daemon --max-workers=1 assemble
+    - $GRADLE assemble
   artifacts:
     paths:
       - build
-  tags: ["default"]
 
 Test:
   stage: test
   script:
-    - ./gradlew --no-daemon --max-workers=1 check
+    - $GRADLE check
   artifacts:
     paths:
       - build
     reports:
       junit: build/test-results/test/TEST-*.xml
-  tags: ["default"]
 
 Coverage:
   stage: analysis
   script:
-    - ./gradlew --no-daemon --max-workers=1 jacocoTestReport
+    - $GRADLE jacocoTestReport
     - cat build/jacocoHtml/index.html || true
   coverage: "/Total.*?([0-9]{1,3})%/"
-  tags: ["default"]
+
+Package:
+  stage: package
+  script:
+    - $GRADLE publishToMavenLocal
+  only: [ tags ]
+  tags: [ package ]
+
+AlpineDockerImage:
+  stage: image
+  image: docker:stable
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    LATEST_TAG: $CI_REGISTRY_IMAGE:latest
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  services:
+    - name: docker:dind
+      entrypoint: ["dockerd", "--host=tcp://0.0.0.0:2375"]
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $IMAGE_TAG -f Dockerfile .
+    - docker tag $IMAGE_TAG $LATEST_TAG
+    - docker push $IMAGE_TAG
+    - docker push $LATEST_TAG
+  tags: ["docker"]
+  only:
+    - tags
+  dependencies: []
