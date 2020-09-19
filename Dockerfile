@@ -17,7 +17,7 @@ COPY . /mcsman
 
 WORKDIR /mcsman
 
-RUN [ "./gradlew", "--console=plain", "--no-daemon", "--stacktrace", ":mcsman-core:installDist", ":mcsman-module-mcsman:jar" ]
+RUN [ "./gradlew", "--console=plain", "--no-daemon", "--stacktrace", ":mcsman-core:installDist" ]
 
 FROM openjdk:8-jre-alpine AS app
 
